@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品試用募集 | 暖心學習體驗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --primary-warm: #f97316;
+            --primary-deep: #ea580c;
+            --secondary-warm: #fff7ed;
+            --accent: #fbbf24;
+            --text-main: #451a03;
+            --text-muted: #92400e;
+            --text-light: #b45309;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            color: var(--text-main);
+            background: #fffbf5;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 18px 48px;
+            display: flex;
+            align-items: center;
+            background: rgba(255,251,245,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(249,115,22,0.1);
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+            flex-shrink: 0;
+        }
+
+        .logo-name {
+            font-family: "Noto Serif TC", serif;
+            font-weight: 900;
+            font-size: 1.15rem;
+            color: #78350f;
+            letter-spacing: 0.04em;
+        }
+
+        .logo-name span {
+            color: var(--primary-warm);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 160px 10% 120px;
+            background: linear-gradient(135deg, #fff7ed 0%, #fffbf5 60%, #fff 100%);
+            min-height: 620px;
+            overflow: hidden;
+        }
+
+        /* Decorative circles */
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251,191,36,0.15) 0%, transparent 70%);
+            top: -100px; right: -100px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%);
+            bottom: -50px; left: 5%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: floatIn 0.9s ease both;
+        }
+
+        @keyframes floatIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-12px); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(249,115,22,0.1);
+            color: var(--primary-deep);
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+            border: 1px solid rgba(249,115,22,0.2);
+        }
+
+        .hero-content h1 {
+            font-family: "Noto Serif TC", serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: #78350f;
+            line-height: 1.4;
+            margin: 0 0 20px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(90deg, #ea580c, #f97316, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .cta-btn {
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--primary-deep), var(--primary-warm));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(249,115,22,0.35);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .cta-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+            border-radius: 50px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 35px rgba(249,115,22,0.45);
+        }
+
+        /* ── SLIDER ── */
+        .slider-section {
+            padding: 100px 0 120px;
+            background: #fef4e8;
+            text-align: center;
+            position: relative;
+        }
+
+        .slider-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(249,115,22,0.3), transparent);
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--primary-warm);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .slider-section h2 {
+            font-family: "Noto Serif TC", serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #78350f;
+            margin: 0 0 60px;
+        }
+
+        .swiper { width: 85%; max-width: 950px; padding: 30px 0 60px; margin: 0 auto; }
+        .swiper-wrapper { align-items: stretch; }
+
+        .swiper-slide {
+            background: #fdf6ee;
+            border-radius: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            color: var(--text-muted);
+            border: 1px solid #fed7aa;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(146,64,14,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .swiper-slide:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 45px rgba(146,64,14,0.12);
+        }
+
+        /* 圖片佔位區 */
+        .slide-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            border-bottom: 1px solid #fed7aa;
+            flex-shrink: 0;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 文字說明區 */
+        .slide-content {
+            padding: 26px 30px 30px;
+            background: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .slide-content h3 {
+            font-family: "Noto Serif TC", serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #78350f;
+            margin: 0 0 10px;
+        }
+
+        .slide-content p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        .swiper-pagination-bullet-active { background: var(--primary-warm) !important; }
+        .swiper-button-next, .swiper-button-prev { color: var(--primary-warm) !important; }
+
+        /* ── FORM ── */
+        .form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            position: relative;
+            scroll-margin-top: 80px;
+        }
+
+        /* 左側：深色文案區 */
+        .form-left {
+            background: linear-gradient(160deg, #78350f 0%, #92400e 100%);
+            padding: 100px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-left::before {
+            content: "";
+            position: absolute;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+            bottom: -100px; right: -100px;
+            pointer-events: none;
+        }
+
+        .form-left::after {
+            content: "";
+            position: absolute;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
+            top: 60px; left: -60px;
+            pointer-events: none;
+        }
+
+        .form-left .section-label {
+            color: #f97316;
+            position: relative; z-index: 1;
+        }
+
+        .form-left-title {
+            font-family: "Noto Serif TC", serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fef3c7;
+            line-height: 1.4;
+            margin: 14px 0 24px;
+            position: relative; z-index: 1;
+        }
+
+        .form-left-title span {
+            background: linear-gradient(90deg, #f97316, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-left-desc {
+            color: #c4895a;
+            font-size: 0.95rem;
+            line-height: 1.85;
+            margin-bottom: 48px;
+            position: relative; z-index: 1;
+        }
+
+        .form-perks {
+            list-style: none;
+            padding: 0; margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative; z-index: 1;
+        }
+
+        .form-perks li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fde8c8;
+            font-size: 0.9rem;
+        }
+
+        .form-perks li::before {
+            content: "✦";
+            color: #f97316;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* 右側：表單區 */
+        .form-right {
+            background: #fffbf5;
+            padding: 100px 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-right-title {
+            font-family: "Noto Serif TC", serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #3b1505;
+            margin: 0 0 8px;
+        }
+
+        .form-right-sub {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        .form-container {
+            width: 100%;
+        }
+
+        .form-group { margin-bottom: 22px; }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #3b1505;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        input, select {
+            width: 100%; padding: 14px 18px;
+            border: 2px solid #e8d5c0;
+            border-radius: 12px;
+            box-sizing: border-box;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-warm);
+            box-shadow: 0 0 0 4px rgba(249,115,22,0.1);
+        }
+
+        input::placeholder { color: #c4a882; }
+
+        .submit-btn {
+            width: 100%; padding: 17px;
+            background: linear-gradient(135deg, var(--primary-deep), var(--primary-warm));
+            color: white; border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(249,115,22,0.3);
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(249,115,22,0.4);
+        }
+
+        .submit-btn:active { transform: translateY(0); }
+
+        /* ── SUCCESS ── */
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            animation: bounceIn 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        .thank-you-icon {
+            width: 110px; height: 110px;
+            background: linear-gradient(135deg, #fef3c7, #fff7ed);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 52px;
+            box-shadow: 0 10px 30px rgba(249,115,22,0.15);
+            border: 3px solid #fed7aa;
+        }
+
+        #success-message h2 {
+            font-family: "Noto Serif TC", serif;
+            font-size: 2rem; color: #92400e;
+            margin-bottom: 12px;
+        }
+
+        #success-message p { color: var(--text-light); line-height: 1.8; }
+
+        @keyframes bounceIn {
+            0%   { transform: scale(0.4); opacity: 0; }
+            60%  { transform: scale(1.08); opacity: 1; }
+            80%  { transform: scale(0.96); }
+            100% { transform: scale(1); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .navbar { padding: 14px 24px; }
+            .hero { padding: 120px 6% 80px; }
+            .hero-content h1 { font-size: 2.1rem; }
+            .mockup-container { transform: scale(0.75); height: 330px; }
+            .form-section { grid-template-columns: 1fr; }
+            .form-left { padding: 70px 32px 60px; }
+            .form-right { padding: 60px 32px 80px; }
+            .form-left-title { font-size: 2rem; }
+            .slider-section h2 { font-size: 1.7rem; }
+        }
+
+        /* ── INTRO ── */
+        .intro-section {
+            padding: 110px 10%;
+            background: #fdf0e0;
+            position: relative;
+        }
+
+        .intro-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(249,115,22,0.5), transparent);
+        }
+
+        .intro-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .intro-title {
+            font-family: "Noto Serif TC", serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #3b1505;
+            margin: 12px 0 24px;
+            line-height: 1.35;
+        }
+
+        .intro-desc {
+            font-size: 1rem;
+            color: #3b1505;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        /* ── INTRO DIAGRAM ── */
+        .intro-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            max-width: 580px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(146,64,14,0.04));
+        }
+
+        .diagram-node {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .diagram-node.right {
+            flex-direction: row-reverse;
+        }
+
+        .node-circle {
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 8px 28px rgba(146,64,14,0.13);
+            gap: 6px;
+        }
+
+        .node-circle.tablet {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            border: 3px solid rgba(255,255,255,0.4);
+        }
+
+        .node-circle.notebook {
+            background: linear-gradient(135deg, #78350f, #92400e);
+            border: 3px solid rgba(255,255,255,0.25);
+        }
+
+        .node-circle.calendar {
+            background: linear-gradient(135deg, #d97706, #fbbf24);
+            border: 3px solid rgba(255,255,255,0.4);
+        }
+
+        .node-circle .node-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .node-circle .node-label {
+            font-family: "Noto Serif TC", serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.92);
+            letter-spacing: 0.05em;
+        }
+
+        .node-text {
+            max-width: 160px;
+            text-align: left;
+        }
+
+        .diagram-node.right .node-text {
+            text-align: right;
+        }
+
+        .node-text strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #3b1505;
+            margin-bottom: 4px;
+        }
+
+        .node-text span {
+            font-size: 0.82rem;
+            color: #7c3a10;
+            line-height: 1.6;
+        }
+
+        /* 連接線 */
+        .diagram-connector {
+            width: 2px;
+            height: 48px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diagram-connector::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(249,115,22,0.4), rgba(249,115,22,0.4));
+            border-radius: 1px;
+        }
+
+        .diagram-connector::after {
+            content: "";
+            position: absolute;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--primary-warm);
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.2);
+        }
+
+        /* 中心圓 InkCal */
+        .diagram-center {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2.5px solid #fed7aa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 6px 20px rgba(146,64,14,0.1);
+            z-index: 2;
+            gap: 2px;
+        }
+
+        .diagram-center .center-icon { font-size: 1.4rem; }
+        .diagram-center .center-label {
+            font-family: "Noto Serif TC", serif;
+            font-size: 0.62rem;
+            font-weight: 900;
+            color: var(--primary-deep);
+        }
+
+        .diagram-wrap {
+            position: relative;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .intro-inner {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .intro-title { font-size: 1.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a class="navbar-logo" href="#">
+            <div class="logo-icon">📖</div>
+            <span class="logo-name">墨曆 <span>InkCal</span></span>
+        </a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✦ 限量體驗名額開放中</div>
+            <h1>在紙本與數位之間，<br>找到<span>剛剛好的平衡</span></h1>
+            <p>我們定位為一款介於紙本手帳與線上行事曆之間的數位手帳服務。<br>保留書寫的自由與情感，同時結合數位的搜尋、同步與效率，<br>讓規劃更自在，也更有質感。</p>
+            <button onclick="document.getElementById('register-section').scrollIntoView({behavior:'smooth'})" class="cta-btn">立即預約試用 →</button>
+        </div>
+    </section>
+
+
+    <!-- PRODUCT INTRO -->
+    <section class="intro-section">
+        <div class="intro-inner">
+            <div class="intro-text-block">
+                <p class="section-label">About the Product</p>
+                <h2 class="intro-title">為喜歡書寫，<br>也追求效率的你而生</h2>
+                <p class="intro-desc">專為習慣使用電子行事曆，卻仍然喜歡手寫溫度的人設計。無論是學生、研究生，或年輕上班族，只要平板是你的日常工具，這款數位手帳都能自然融入你的生活。</p>
+            </div>
+            <div class="intro-diagram">
+                <svg class="diagram-svg" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="shadow-lg">
+                            <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="rgba(120,53,15,0.25)"/>
+                        </filter>
+                        <filter id="shadow-md">
+                            <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="rgba(120,53,15,0.18)"/>
+                        </filter>
+                        <filter id="shadow-sm2">
+                            <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="rgba(120,53,15,0.15)"/>
+                        </filter>
+                        <linearGradient id="screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fffbf5"/>
+                            <stop offset="100%" stop-color="#fff7ed"/>
+                        </linearGradient>
+                        <linearGradient id="page-left" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#f5ede0"/>
+                            <stop offset="100%" stop-color="#fdf6ec"/>
+                        </linearGradient>
+                        <linearGradient id="page-right" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#fdf6ec"/>
+                            <stop offset="100%" stop-color="#f5ede0"/>
+                        </linearGradient>
+                        <linearGradient id="spine-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#3b1505"/>
+                            <stop offset="50%" stop-color="#78350f"/>
+                            <stop offset="100%" stop-color="#3b1505"/>
+                        </linearGradient>
+                        <linearGradient id="cal-top" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#dc2626"/>
+                            <stop offset="100%" stop-color="#ea580c"/>
+                        </linearGradient>
+                        <linearGradient id="cal-body" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#fef9f5"/>
+                        </linearGradient>
+                        <linearGradient id="tablet-body" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#292524"/>
+                            <stop offset="100%" stop-color="#1c1917"/>
+                        </linearGradient>
+                        <clipPath id="screen-clip">
+                            <rect x="0" y="0" width="148" height="106" rx="4"/>
+                        </clipPath>
+                    </defs>
+
+                    <!-- 連接線 -->
+                    <line x1="230" y1="108" x2="100" y2="318" stroke="#fed7aa" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.7"/>
+                    <line x1="230" y1="108" x2="360" y2="318" stroke="#fed7aa" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.7"/>
+                    <line x1="100" y1="318" x2="360" y2="318" stroke="#fed7aa" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.7"/>
+
+
+
+                    <!-- ══ 平板（上方，橫放） ══ -->
+                    <g transform="translate(146, 16)" filter="url(#shadow-lg)">
+                        <!-- 機身 -->
+                        <rect x="0" y="0" width="168" height="122" rx="10" fill="url(#tablet-body)"/>
+                        <!-- 螢幕邊框 -->
+                        <rect x="7" y="7" width="154" height="108" rx="6" fill="#111"/>
+                        <!-- 螢幕 -->
+                        <rect x="9" y="9" width="150" height="104" rx="5" fill="url(#screen-grad)"/>
+                        <!-- 螢幕內：週曆 -->
+                        <rect x="9" y="9" width="150" height="14" rx="0" fill="#fff7ed"/>
+                        <text x="84" y="19" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="700" fill="#92400e">2025年3月</text>
+                        <!-- 格線 -->
+                        <line x1="9" y1="23" x2="159" y2="23" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="9" y1="37" x2="159" y2="37" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="9" y1="51" x2="159" y2="51" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="9" y1="65" x2="159" y2="65" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="9" y1="79" x2="159" y2="79" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="9" y1="93" x2="159" y2="93" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="30" y1="9" x2="30" y2="113" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="51" y1="9" x2="51" y2="113" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="72" y1="9" x2="72" y2="113" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="93" y1="9" x2="93" y2="113" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="114" y1="9" x2="114" y2="113" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <line x1="135" y1="9" x2="135" y2="113" stroke="#e5e7eb" stroke-width="0.6"/>
+                        <!-- 星期 -->
+                        <text x="19" y="32" font-size="6" fill="#6b7280" font-family="sans-serif" text-anchor="middle">一</text>
+                        <text x="40" y="32" font-size="6" fill="#6b7280" font-family="sans-serif" text-anchor="middle">二</text>
+                        <text x="61" y="32" font-size="6" fill="#6b7280" font-family="sans-serif" text-anchor="middle">三</text>
+                        <text x="82" y="32" font-size="6" fill="#6b7280" font-family="sans-serif" text-anchor="middle">四</text>
+                        <text x="103" y="32" font-size="6" fill="#6b7280" font-family="sans-serif" text-anchor="middle">五</text>
+                        <text x="124" y="32" font-size="6" fill="#f97316" font-family="sans-serif" text-anchor="middle">六</text>
+                        <text x="145" y="32" font-size="6" fill="#ef4444" font-family="sans-serif" text-anchor="middle">日</text>
+                        <!-- 手寫筆跡 -->
+                        <path d="M13,44 Q20,41 28,44 Q24,46 18,45" stroke="#ea580c" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+                        <path d="M35,56 Q45,52 54,57" stroke="#78350f" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+                        <path d="M76,43 Q86,40 95,44 Q92,47 80,46" stroke="#ea580c" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+                        <path d="M55,70 Q68,66 80,71 Q90,67 100,70" stroke="#92400e" stroke-width="1" fill="none" stroke-linecap="round"/>
+                        <!-- 色塊 -->
+                        <rect x="33" y="38" width="17" height="10" rx="2" fill="#fef3c7" opacity="0.85"/>
+                        <rect x="96" y="24" width="17" height="10" rx="2" fill="#fed7aa" opacity="0.85"/>
+                        <rect x="55" y="80" width="35" height="10" rx="2" fill="#fde8d0" opacity="0.85"/>
+                        <rect x="13" y="66" width="17" height="10" rx="2" fill="#fef3c7" opacity="0.75"/>
+                        <!-- 相機 -->
+                        <circle cx="84" cy="3.5" r="2" fill="#374151"/>
+                        <!-- 홈버튼 없음, 측면버튼 -->
+                        <rect x="168" y="28" width="3" height="18" rx="1.5" fill="#374151"/>
+                        <rect x="168" y="52" width="3" height="12" rx="1.5" fill="#374151"/>
+                        <!-- 반사광 -->
+                        <rect x="9" y="9" width="150" height="26" rx="5" fill="white" opacity="0.05"/>
+                    </g>
+
+                    <!-- ══ 打開的手帳（左下） ══ -->
+                    <g transform="translate(14, 256)" filter="url(#shadow-lg)">
+                        <!-- 左頁 -->
+                        <rect x="0" y="4" width="100" height="130" rx="2" fill="url(#page-left)"/>
+                        <!-- 右頁 -->
+                        <rect x="102" y="4" width="100" height="130" rx="2" fill="url(#page-right)"/>
+                        <!-- 書脊 -->
+                        <rect x="97" y="0" width="8" height="138" rx="2" fill="url(#spine-grad)"/>
+                        <!-- 書脊裝飾線 -->
+                        <line x1="101" y1="4" x2="101" y2="134" stroke="rgba(255,220,180,0.2)" stroke-width="0.8"/>
+                        <!-- 螺旋圈 -->
+                        <circle cx="101" cy="18"  r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="34"  r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="50"  r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="66"  r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="82"  r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="98"  r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="114" r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <circle cx="101" cy="130" r="4" fill="none" stroke="#5a3010" stroke-width="2"/>
+                        <!-- 左頁：橫線 -->
+                        <line x1="8"  y1="22"  x2="94" y2="22"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="34"  x2="94" y2="34"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="46"  x2="94" y2="46"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="58"  x2="94" y2="58"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="70"  x2="94" y2="70"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="82"  x2="94" y2="82"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="94"  x2="94" y2="94"  stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="106" x2="94" y2="106" stroke="#ddd0c0" stroke-width="0.7"/>
+                        <line x1="8"  y1="118" x2="94" y2="118" stroke="#ddd0c0" stroke-width="0.7"/>
+                        <!-- 左頁：手寫文字模擬 -->
+                        <rect x="8"  y="14" width="52" height="5" rx="2" fill="#92400e" opacity="0.5"/>
+                        <rect x="8"  y="26" width="72" height="4" rx="2" fill="#b45309" opacity="0.25"/>
+                        <rect x="8"  y="38" width="60" height="4" rx="2" fill="#b45309" opacity="0.25"/>
+                        <rect x="8"  y="50" width="78" height="4" rx="2" fill="#b45309" opacity="0.2"/>
+                        <rect x="8"  y="62" width="55" height="4" rx="2" fill="#b45309" opacity="0.25"/>
+                        <!-- 左頁：手繪星號 -->
+                        <text x="78" y="18" font-size="9" fill="#f97316" opacity="0.7">✦</text>
+                        <!-- 左頁：小貼紙 -->
+                        <rect x="8" y="72" width="40" height="24" rx="3" fill="#fef3c7" stroke="#fed7aa" stroke-width="0.8"/>
+                        <rect x="12" y="76" width="30" height="3" rx="1.5" fill="#d97706" opacity="0.4"/>
+                        <rect x="12" y="82" width="24" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                        <rect x="12" y="88" width="28" height="3" rx="1.5" fill="#d97706" opacity="0.3"/>
+                        <!-- 右頁：月曆格 -->
+                        <text x="150" y="18" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="7.5" font-weight="700" fill="#78350f">三月</text>
+                        <line x1="108" y1="22" x2="196" y2="22" stroke="#ddd0c0" stroke-width="0.7"/>
+                        <!-- 星期標頭 -->
+                        <text x="115" y="31" font-size="5.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">一</text>
+                        <text x="127" y="31" font-size="5.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">二</text>
+                        <text x="139" y="31" font-size="5.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">三</text>
+                        <text x="151" y="31" font-size="5.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">四</text>
+                        <text x="163" y="31" font-size="5.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">五</text>
+                        <text x="175" y="31" font-size="5.5" fill="#f97316" font-family="sans-serif" text-anchor="middle">六</text>
+                        <text x="187" y="31" font-size="5.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">日</text>
+                        <line x1="108" y1="33" x2="196" y2="33" stroke="#ddd0c0" stroke-width="0.5"/>
+                        <!-- 日期 row1 -->
+                        <text x="175" y="43" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">1</text>
+                        <text x="187" y="43" font-size="6.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">2</text>
+                        <!-- row2 -->
+                        <text x="115" y="55" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">3</text>
+                        <text x="127" y="55" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">4</text>
+                        <text x="139" y="55" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">5</text>
+                        <text x="151" y="55" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">6</text>
+                        <text x="163" y="55" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">7</text>
+                        <text x="175" y="55" font-size="6.5" fill="#f97316" font-family="sans-serif" text-anchor="middle">8</text>
+                        <text x="187" y="55" font-size="6.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">9</text>
+                        <!-- row3 -->
+                        <text x="115" y="67" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">10</text>
+                        <text x="127" y="67" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">11</text>
+                        <text x="139" y="67" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">12</text>
+                        <circle cx="151" cy="63" r="7" fill="#ea580c" opacity="0.15"/>
+                        <text x="151" y="67" font-size="6.5" fill="#ea580c" font-family="sans-serif" text-anchor="middle" font-weight="700">13</text>
+                        <text x="163" y="67" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">14</text>
+                        <text x="175" y="67" font-size="6.5" fill="#f97316" font-family="sans-serif" text-anchor="middle">15</text>
+                        <text x="187" y="67" font-size="6.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">16</text>
+                        <!-- row4 -->
+                        <text x="115" y="79" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">17</text>
+                        <text x="127" y="79" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">18</text>
+                        <text x="139" y="79" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">19</text>
+                        <text x="151" y="79" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">20</text>
+                        <text x="163" y="79" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">21</text>
+                        <text x="175" y="79" font-size="6.5" fill="#f97316" font-family="sans-serif" text-anchor="middle">22</text>
+                        <text x="187" y="79" font-size="6.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">23</text>
+                        <!-- row5 -->
+                        <text x="115" y="91" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">24</text>
+                        <text x="127" y="91" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">25</text>
+                        <text x="139" y="91" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">26</text>
+                        <text x="151" y="91" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">27</text>
+                        <text x="163" y="91" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">28</text>
+                        <text x="175" y="91" font-size="6.5" fill="#f97316" font-family="sans-serif" text-anchor="middle">29</text>
+                        <text x="187" y="91" font-size="6.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">30</text>
+                        <!-- row6 -->
+                        <text x="115" y="103" font-size="6.5" fill="#374151" font-family="sans-serif" text-anchor="middle">31</text>
+                        <!-- 右頁下方：手寫備忘 -->
+                        <line x1="108" y1="108" x2="196" y2="108" stroke="#ddd0c0" stroke-width="0.7"/>
+                        <rect x="112" y="115" width="50" height="4" rx="2" fill="#b45309" opacity="0.2"/>
+                        <rect x="112" y="123" width="40" height="4" rx="2" fill="#b45309" opacity="0.15"/>
+                        <!-- 書籤帶 -->
+                        <rect x="180" y="0" width="6" height="28" rx="1" fill="#f97316" opacity="0.75"/>
+                        <!-- 陰影折痕 -->
+                        <rect x="97" y="0" width="8" height="138" rx="2" fill="rgba(0,0,0,0.08)"/>
+                    </g>
+
+                    <!-- ══ 行事曆（右下） ══ -->
+                    <g transform="translate(300, 248)" filter="url(#shadow-lg)">
+                        <!-- 底板陰影層 -->
+                        <rect x="4" y="14" width="138" height="162" rx="8" fill="#e5d5c5"/>
+                        <!-- 主體 -->
+                        <rect x="0" y="12" width="138" height="162" rx="8" fill="url(#cal-body)" stroke="#e0cfc0" stroke-width="1"/>
+                        <!-- 頂部紅色橫條 -->
+                        <rect x="0" y="12" width="138" height="34" rx="8" fill="url(#cal-top)"/>
+                        <rect x="0" y="34" width="138" height="12" fill="url(#cal-top)"/>
+                        <!-- 夾環底座 -->
+                        <rect x="0" y="8" width="138" height="14" rx="4" fill="#d1d5db"/>
+                        <!-- 夾環 -->
+                        <rect x="28" y="2" width="10" height="20" rx="5" fill="#9ca3af"/>
+                        <rect x="64" y="2" width="10" height="20" rx="5" fill="#9ca3af"/>
+                        <rect x="100" y="2" width="10" height="20" rx="5" fill="#9ca3af"/>
+                        <rect x="30" y="0" width="6" height="12" rx="3" fill="#6b7280"/>
+                        <rect x="66" y="0" width="6" height="12" rx="3" fill="#6b7280"/>
+                        <rect x="102" y="0" width="6" height="12" rx="3" fill="#6b7280"/>
+                        <!-- 月份文字 -->
+                        <text x="69" y="30" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="white" letter-spacing="1">MARCH  2025</text>
+                        <!-- 星期標頭 -->
+                        <text x="10"  y="57" font-size="7.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">S</text>
+                        <text x="30"  y="57" font-size="7.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">M</text>
+                        <text x="50"  y="57" font-size="7.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">T</text>
+                        <text x="69"  y="57" font-size="7.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">W</text>
+                        <text x="88"  y="57" font-size="7.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">T</text>
+                        <text x="108" y="57" font-size="7.5" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">F</text>
+                        <text x="128" y="57" font-size="7.5" fill="#ef4444" font-family="sans-serif" text-anchor="middle">S</text>
+                        <line x1="4" y1="61" x2="134" y2="61" stroke="#e5e7eb" stroke-width="0.8"/>
+                        <!-- row1 -->
+                        <text x="88"  y="73" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">1</text>
+                        <text x="108" y="73" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">2</text>
+                        <text x="128" y="73" font-size="9" fill="#ef4444" font-family="sans-serif" text-anchor="middle">3</text>
+                        <!-- row2 -->
+                        <text x="10"  y="89" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">4</text>
+                        <text x="30"  y="89" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">5</text>
+                        <text x="50"  y="89" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">6</text>
+                        <text x="69"  y="89" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">7</text>
+                        <text x="88"  y="89" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">8</text>
+                        <text x="108" y="89" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">9</text>
+                        <text x="128" y="89" font-size="9" fill="#ef4444" font-family="sans-serif" text-anchor="middle">10</text>
+                        <!-- row3 -->
+                        <text x="10"  y="105" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">11</text>
+                        <text x="30"  y="105" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">12</text>
+                        <text x="50"  y="105" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">13</text>
+                        <circle cx="69" cy="101" r="10" fill="#ea580c" opacity="0.15"/>
+                        <text x="69"  y="105" font-size="9" fill="#ea580c" font-family="sans-serif" text-anchor="middle" font-weight="700">14</text>
+                        <text x="88"  y="105" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">15</text>
+                        <text x="108" y="105" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">16</text>
+                        <text x="128" y="105" font-size="9" fill="#ef4444" font-family="sans-serif" text-anchor="middle">17</text>
+                        <!-- row4 -->
+                        <text x="10"  y="121" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">18</text>
+                        <text x="30"  y="121" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">19</text>
+                        <text x="50"  y="121" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">20</text>
+                        <text x="69"  y="121" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">21</text>
+                        <text x="88"  y="121" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">22</text>
+                        <text x="108" y="121" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">23</text>
+                        <text x="128" y="121" font-size="9" fill="#ef4444" font-family="sans-serif" text-anchor="middle">24</text>
+                        <!-- row5 -->
+                        <text x="10"  y="137" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">25</text>
+                        <text x="30"  y="137" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">26</text>
+                        <text x="50"  y="137" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">27</text>
+                        <text x="69"  y="137" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">28</text>
+                        <text x="88"  y="137" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">29</text>
+                        <text x="108" y="137" font-size="9" fill="#374151" font-family="sans-serif" text-anchor="middle">30</text>
+                        <text x="128" y="137" font-size="9" fill="#ef4444" font-family="sans-serif" text-anchor="middle">31</text>
+                        <!-- 分隔線 -->
+                        <line x1="4" y1="143" x2="134" y2="143" stroke="#e5e7eb" stroke-width="0.8"/>
+                        <!-- 備忘欄 -->
+                        <rect x="8" y="149" width="55" height="5" rx="2" fill="#d1d5db" opacity="0.6"/>
+                        <rect x="8" y="158" width="40" height="5" rx="2" fill="#d1d5db" opacity="0.4"/>
+                        <!-- 反光 -->
+                        <rect x="0" y="12" width="138" height="18" rx="8" fill="white" opacity="0.1"/>
+                    </g>
+
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDER -->
+    <section class="slider-section">
+        <p class="section-label">Features Preview</p>
+        <h2>產品功能搶先看</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="壓力感測"> -->
+                        ✏️
+                    </div>
+                    <div class="slide-content">
+                        <h3>壓力感測</h3>
+                        <p>透過筆尖在螢幕上的力道變化，即時呈現不同粗細的筆觸，還原真實書寫手感。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="自由排版"> -->
+                        📐
+                    </div>
+                    <div class="slide-content">
+                        <h3>自由排版</h3>
+                        <p>不受紙本空間限制。可從週、日頁面自由拉出分頁，隨時縮放調整大小；完成後退出，系統自動隱藏多餘區域，保持畫面整潔與排版美感。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="清晰標籤"> -->
+                        🏷️
+                    </div>
+                    <div class="slide-content">
+                        <h3>清晰標籤</h3>
+                        <p>於手帳內的週、月頁面皆可新增標籤，一鍵快速跳頁，立即查看重點內容。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="自動同步"> -->
+                        🔄
+                    </div>
+                    <div class="slide-content">
+                        <h3>自動同步</h3>
+                        <p>支援多裝置資料即時同步，確保資訊完整一致，大幅提升使用效率與便利性。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="提醒功能"> -->
+                        🔔
+                    </div>
+                    <div class="slide-content">
+                        <h3>提醒功能</h3>
+                        <p>可自訂提醒時間，在行程開始前即時通知，不錯過任何重要安排。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="搜尋功能"> -->
+                        🔍
+                    </div>
+                    <div class="slide-content">
+                        <h3>搜尋功能</h3>
+                        <p>無論是活動、筆記，或共享聯絡人，只需輸入關鍵字，即可快速精準查找。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="自訂介面"> -->
+                        🎨
+                    </div>
+                    <div class="slide-content">
+                        <h3>自訂介面</h3>
+                        <p>可於素材商城自由更換主題與風格，打造最符合個人喜好的專屬手帳介面。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="form-section" id="register-section">
+
+        <!-- 左側文案 -->
+        <div class="form-left">
+            <p class="section-label">Early Access</p>
+            <h2 class="form-left-title">搶先體驗<br><span>墨曆 InkCal</span></h2>
+            <p class="form-left-desc">現在登記，成為第一批試用者，<br>與我們一起打磨最好的手寫體驗。</p>
+            <ul class="form-perks">
+                <li>免費獲得完整試用資格</li>
+                <li>優先解鎖所有新功能</li>
+                <li>正式上線享有專屬折扣</li>
+                <li>直接影響產品開發方向</li>
+            </ul>
+        </div>
+
+        <!-- 右側表單 -->
+        <div class="form-right">
+            <div id="form-box">
+                <h3 class="form-right-title">立即登記試用</h3>
+                <p class="form-right-sub">填寫資料後，我們將第一時間與您聯繫。</p>
+                <div class="form-container">
+                    <form id="trial-form">
+                        <div class="form-group">
+                            <label>稱呼</label>
+                            <input type="text" placeholder="例如：王小明" required>
+                        </div>
+                        <div class="form-group">
+                            <label>年齡</label>
+                            <input type="number" placeholder="請輸入您的年齡" min="1" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label>生理性別</label>
+                            <select required>
+                                <option value="" disabled selected>請選擇</option>
+                                <option value="male">男</option>
+                                <option value="female">女</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>電子郵件</label>
+                            <input type="email" placeholder="example@email.com" required>
+                        </div>
+                        <button type="submit" class="submit-btn">確認送出，領取試用 ✦</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="success-message">
+                <div class="thank-you-icon">🎁</div>
+                <h2>申請成功！</h2>
+                <p>我們將在第一時間<br>寄送資訊至您的信箱，敬請期待。</p>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            speed: 600,
+        });
+
+        document.getElementById('trial-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formBox = document.getElementById('form-box');
+            const successMsg = document.getElementById('success-message');
+            formBox.style.display = 'none';
+            successMsg.style.display = 'block';
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+</body>
+</html>
+
