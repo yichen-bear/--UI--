@@ -224,7 +224,7 @@
             margin: 0 0 60px;
         }
 
-        .swiper { width: 85%; max-width: 950px; padding: 30px 0 60px; margin: 0 auto; }
+        .swiper { width: 60%; max-width: 600px; padding: 30px 0 60px; margin: 0 auto; }
         .swiper-wrapper { align-items: stretch; }
 
         .swiper-slide {
@@ -249,7 +249,6 @@
         /* 圖片佔位區 */
         .slide-image {
             width: 100%;
-            height: 280px;
             background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
             display: flex;
             align-items: center;
@@ -257,18 +256,19 @@
             font-size: 3.5rem;
             border-bottom: 1px solid #fed7aa;
             flex-shrink: 0;
+            line-height: 0;
         }
 
-        .slide-image img {
+        .slide-image img,
+        .slide-image video {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
         }
 
         /* 文字說明區 */
         .slide-content {
-            padding: 26px 30px 30px;
+            padding: 18px 22px 22px;
             background: #fff;
             flex: 1;
             display: flex;
@@ -278,16 +278,16 @@
 
         .slide-content h3 {
             font-family: "Noto Serif TC", serif;
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: 900;
             color: #78350f;
-            margin: 0 0 10px;
+            margin: 0 0 8px;
         }
 
         .slide-content p {
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             color: var(--text-light);
-            line-height: 1.75;
+            line-height: 1.7;
             margin: 0;
         }
 
@@ -1038,8 +1038,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="壓力感測"> -->
-                        ✏️
+                        <video src="video/壓力感測.mp4" autoplay loop muted playsinline></video>
                     </div>
                     <div class="slide-content">
                         <h3>壓力感測</h3>
@@ -1048,18 +1047,16 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="自由排版"> -->
-                        📐
+                        <video src="video/自由排版.mp4" autoplay loop muted playsinline></video>
                     </div>
                     <div class="slide-content">
                         <h3>自由排版</h3>
-                        <p>不受紙本空間限制。可從週、日頁面自由拉出分頁，隨時縮放調整大小；完成後退出，系統自動隱藏多餘區域，保持畫面整潔與排版美感。</p>
+                        <p>所有素材與圖片皆可透過觸控自由拖拉至頁面任意位置，展現高度自由的排版體驗。</p>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="清晰標籤"> -->
-                        🏷️
+                        <img src="img/清晰標籤.jpg" alt="清晰標籤">
                     </div>
                     <div class="slide-content">
                         <h3>清晰標籤</h3>
@@ -1068,8 +1065,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="自動同步"> -->
-                        🔄
+                        <img src="img/自動同步.jpg" alt="自動同步">
                     </div>
                     <div class="slide-content">
                         <h3>自動同步</h3>
@@ -1078,8 +1074,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="提醒功能"> -->
-                        🔔
+                        <img src="img/提醒功能.jpg" alt="提醒功能">
                     </div>
                     <div class="slide-content">
                         <h3>提醒功能</h3>
@@ -1088,8 +1083,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="搜尋功能"> -->
-                        🔍
+                        <img src="img/搜尋功能.jpg" alt="搜尋功能">
                     </div>
                     <div class="slide-content">
                         <h3>搜尋功能</h3>
@@ -1098,12 +1092,20 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="slide-image">
-                        <!-- 替換時：移除 emoji，改為 <img src="你的圖片.jpg" alt="自訂介面"> -->
-                        🎨
+                        <img src="img/自訂介面.jpg" alt="自訂介面">
                     </div>
                     <div class="slide-content">
                         <h3>自訂介面</h3>
                         <p>可於素材商城自由更換主題與風格，打造最符合個人喜好的專屬手帳介面。</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-image">
+                        <img src="img/素材庫.jpg" alt="自訂介面">
+                    </div>
+                    <div class="slide-content">
+                        <h3>素材庫</h3>
+                        <p>上傳並管理素材，可選原圖或 AI 去背，搭配官方素材自由混搭，打造個人風格手帳。</p>
                     </div>
                 </div>
             </div>
@@ -1192,4 +1194,3 @@
     </script>
 </body>
 </html>
-
